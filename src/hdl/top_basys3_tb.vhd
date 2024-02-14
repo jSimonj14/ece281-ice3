@@ -70,11 +70,8 @@ architecture test_bench of top_basys3_tb is
   
  
 	-- declare signals needed to stimulate the UUT inputs
-        signal w_sw0 : std_logic := '0';
-        signal w_sw1 : std_logic := '0';
-        signal w_sw2 : std_logic := '0';
-        signal w_led0 : std_logic := '0';
-        signal  w_led1 : std_logic := '0'; --TODO
+        signal w_sw : std_logic_vector(2 downto 0);
+        signal w_led : std_logic_vector(1 downto 0); --TODO
 	-- finish declaring needed signals
 begin
 	-- PORT MAPS ----------------------------------------
@@ -83,11 +80,11 @@ begin
 	-----------------------------------------------------
 	top_basys3_inst : top_basys3 port map (
 	   
-	   sw(0) => w_sw0,
-	   led(0) => w_led0,
-	   sw(1) => w_sw1,
-	   sw(2) => w_sw2,
-       led(1) => w_led1
+	   sw(0) => w_sw(0),
+	   led(0) => w_led(0),
+	   sw(1) => w_sw(1),
+	   sw(2) => w_sw(2),
+       led(1) => w_led(1)
 	   
 	);
 	-- PROCESSES ----------------------------------------	
@@ -103,7 +100,16 @@ begin
         w_sw <= o"2"; wait for 10 ns;
           assert w_led = "10" report "bad 010" severity failure;
         w_sw <= o"3"; wait for 10 ns;
-          assert w_led = "11" report "bad 011" severity failure; 
+          assert w_led = "10" report "bad 011" severity failure; 
+	    w_sw <= o"4"; wait for 10 ns;
+          assert w_led = "01" report "bad 100" severity failure;
+        w_sw <= o"5"; wait for 10 ns;
+          assert w_led = "10" report "bad 101" severity failure;
+        w_sw <= o"6"; wait for 10 ns;
+          assert w_led = "10" report "bad 110" severity failure;
+        w_sw <= o"7"; wait for 10 ns;
+          assert w_led = "11" report "bad 111" severity failure; 
+        
 	    --You must fill in the remaining test cases.	
 	   
         -- TODO:  rest of test plan
