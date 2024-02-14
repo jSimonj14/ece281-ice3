@@ -59,13 +59,22 @@ architecture test_bench of top_basys3_tb is
   -- declare the component of your top-level design unit under test (UUT)
   component top_basys3 is
       port(
+      		-- Switches
+        sw        :    in  std_logic_vector(2 downto 0);
+      
+      -- LEDs
+        led        :    out    std_logic_vector(1 downto 0)
           -- TODO
       );
   end component;
   
  
 	-- declare signals needed to stimulate the UUT inputs
-	   -- TODO
+        signal w_sw0 : std_logic := '0';
+        signal w_sw1 : std_logic := '0';
+        signal w_sw2 : std_logic := '0';
+        signal w_led0 : std_logic := '0';
+        signal  w_led1 : std_logic := '0'; --TODO
 	-- finish declaring needed signals
 begin
 	-- PORT MAPS ----------------------------------------
@@ -73,8 +82,13 @@ begin
 	-- Look at your old test benches if you are unsure what to do
 	-----------------------------------------------------
 	top_basys3_inst : top_basys3 port map (
-	   sw => w_sw,
-	   led => w_led
+	   
+	   sw(0) => w_sw0,
+	   led(0) => w_led0,
+	   sw(1) => w_sw1,
+	   sw(2) => w_sw2,
+       led(1) => w_led1
+	   
 	);
 	-- PROCESSES ----------------------------------------	
 	-- Test Plan Process
@@ -83,11 +97,12 @@ begin
 	begin
 	
 	    w_sw <= o"0"; wait for 10 ns;
-		assert w_led = "00" report "bad o0" severity failure;
-            w_sw <= o"1"; wait for 10 ns;
-            	assert w_led = "01" report "bad o1" severity failure;
+		  assert w_led = "00" report "bad o0" severity failure;
+        w_sw <= o"1"; wait for 10 ns;
+          assert w_led = "01" report "bad o1" severity failure;
 	    --You must fill in the remaining test cases.	
-	
+	   
+        -- TODO:  rest of test plan
 		wait; -- wait forever
 	end process;	
 	-----------------------------------------------------	
