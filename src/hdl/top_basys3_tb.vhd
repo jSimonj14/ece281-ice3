@@ -81,10 +81,11 @@ begin
 	top_basys3_inst : top_basys3 port map (
 	   
 	   sw(0) => w_sw(0),
-	   led(0) => w_led(0),
 	   sw(1) => w_sw(1),
 	   sw(2) => w_sw(2),
+       led(0) => w_led(0),
        led(1) => w_led(1)
+	   
 	   
 	);
 	-- PROCESSES ----------------------------------------	
