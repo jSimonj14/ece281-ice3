@@ -25,6 +25,6 @@ Finally, the workflow **runs** the simulation. If successful then it will quietl
 If any of the `assert` statements fail **with** `severity failure` then GHDL will cease the simulation and exit with non-zero code; this will also cause the workflow to fail.
 Assert statements of other severity levels will be reported, but not fail the workflow.
 ## Documentation
-C3C Miller helped explained that I declared the swithces and LEDs wrong initially in the tb file; thus I fixed it per his suggestion
+C3C Miller explained that I had declared the swithces and LEDs wrong initially in the tb file; thus I fixed it per his suggestion
 
 ![icypic(ice3 pic)](https://github.com/jSimonj14/ece281-ice3/assets/141962382/23047b7c-c481-4792-97f0-54b081eb96cb)
